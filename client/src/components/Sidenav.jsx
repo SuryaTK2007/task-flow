@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Sidenav = () => {
   return (
@@ -10,19 +11,19 @@ const Sidenav = () => {
       <nav className="flex-1 px-4">
         <ul className="space-y-2">
           <li>
-            <a href="#" className="block px-4 py-2 rounded hover:bg-gray-700 transition">
+            <Link to="/dashboard" className="block px-4 py-2 rounded hover:bg-gray-700 transition">
               Dashboard
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="block px-4 py-2 rounded hover:bg-gray-700 transition">
+            <Link to="/projects" className="block px-4 py-2 rounded hover:bg-gray-700 transition">
               Projects
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="block px-4 py-2 rounded hover:bg-gray-700 transition">
+            <Link to="/team-members" className="block px-4 py-2 rounded hover:bg-gray-700 transition">
               Team Members
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
