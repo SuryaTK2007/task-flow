@@ -1,7 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Sidenav = () => {
+  const navigate = useNavigate()
+  const user = JSON.parse(localStorage.getItem('user') || '{}')
+
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('isAuthenticated')
+    localStorage.removeItem('user')
+    navigate('/login')
+  }
+
   return (
     <div className="w-64 h-screen bg-gray-800 text-white flex flex-col">
       <div className="p-6">
@@ -29,15 +39,21 @@ const Sidenav = () => {
       </nav>
       
       <div className="p-4 border-t border-gray-700">
-        <div className="flex items-center gap-3">
+        <Link to="/profile" className="flex items-center gap-3 hover:bg-gray-700 p-2 rounded transition">
           <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center font-semibold">
-            JD
+            {user.fullName?.charAt(0).toUpperCase() || 'U'}
           </div>
           <div>
-            <p className="font-medium">John Doe</p>
-            <p className="text-sm text-gray-400">Admin</p>
+            <p className="font-medium">{user.fullName || 'User'}</p>
+            <p className="text-sm text-gray-400">{user.role || 'Member'}</p>
           </div>
-        </div>
+        </Link>
+        <button 
+          onClick={handleLogout}
+          className="w-full mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
+        >
+          Logout
+        </button>
       </div>
     </div>
   )
